@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.suhodo.sb_ex01.domain.Board;
 import org.suhodo.sb_ex01.dto.*;
 import org.suhodo.sb_ex01.repository.BoardRepository;
 
@@ -18,6 +19,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Long register(BoardDTO boardDTO) {
+        Board board = dtoToEntity(boardDTO);
         return 0L;
     }
 
