@@ -4,6 +4,7 @@ import org.suhodo.sb_ex01.domain.Board;
 import org.suhodo.sb_ex01.dto.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface BoardService {
     Long register(BoardDTO boardDTO);
@@ -26,8 +27,8 @@ public interface BoardService {
                 .writer(boardDTO.getWriter())
                 .build();
 
-        if(boardDTO.getFileName() != null){
-            boardDTO.getFileName().forEach(fileName -> {
+        if(boardDTO.getFileNames() != null){
+            boardDTO.getFileNames().forEach(fileName -> {
                 String[] arr =fileName.split("_");
                 board.addImage(arr[0], arr[1]);
             });
@@ -45,7 +46,15 @@ public interface BoardService {
                 .modDate(board.getModDate())
                 .build();
 
-        List<String> fileNames = board.getImag
+        List<String> fileNames = board.getImageSet().stream().sorted().map(
+                boardImage -> {
+                    return boardImage.getUuid() + "_" + boardImage.getFileName();
+                }
+        ).collect(Collectors.toList());
+
+        boardDTO.setFileNames(fileNames);
+
+        return boardDTO;
 
     }
 

@@ -1,0 +1,15 @@
+package org.suhodo.sb_ex01.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.suhodo.sb_ex01.domain.Reply;
+
+public interface ReplyRepository extends JpaRepository<Reply, Long> {
+
+    @Query("select r from Reply where r.board.bno = bno")
+    Page<Reply> lostOfBoard(Long bno, Pageable pageable);
+
+    void  deleteByBoard(Long bno);
+}
+
