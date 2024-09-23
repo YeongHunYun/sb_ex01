@@ -58,7 +58,7 @@ public class BoardController {
     }
 
     @GetMapping({"/read", "/modify"})
-    public String read(Long bno, PageRequestDTO pageRequestDTO, Model model){
+    public void read(Long bno, PageRequestDTO pageRequestDTO, Model model){
         BoardDTO boardDTO = boardService.readOne(bno);
 
         log.info(boardDTO+"<<< 얘는 보드 디티오임 리드 메서드임 스트링임 ㅋㅋ");
@@ -92,8 +92,8 @@ public class BoardController {
         log.info("게시글 지웤ㅋㅋㅋ" + bno);
         boardService.remove(bno);
 
-        log.info(boardDTO.getFileName()+"게시물이 데이터베이스 상에서 삭제되었다면 첨부파일도 삭제zzzz");
-        List<String> fileNames = boardDTO.getFileName();
+        log.info(boardDTO.getFileNames()+"게시물이 데이터베이스에서 삭제되었다면 첨부파일도 삭제zzzz");
+        List<String> fileNames = boardDTO.getFileNames();
         if(fileNames != null && fileNames.size() > 0) {
             removeFiles(fileNames);
         }

@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.suhodo.sb_ex01.domain.Board;
+import org.suhodo.sb_ex01.repository.search.BoardSearch;
+import org.suhodo.sb_ex01.service.BoardService;
 
 import java.util.Optional;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch {
 
     Page<Board> findByTitleContainingOrderByBnoDesc(String keyword, Pageable pageable);
 

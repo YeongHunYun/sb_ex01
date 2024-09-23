@@ -22,11 +22,11 @@ public class PageResponseDTO<E> {
     private List<E> dtoList;
 
     @Builder(builderMethodName = "withAll")
-    public PageResponseDTO(PageRequestDTO pageReqeustDTO, List<E> dtoList, int total){
+    public PageResponseDTO(PageRequestDTO pageRequestDTO, List<E> dtoList, int total){
         if(total <=0)return;
 
-        this.page = pageReqeustDTO.getPage();
-        this.size = pageReqeustDTO.getSize();
+        this.page = pageRequestDTO.getPage();
+        this.size = pageRequestDTO.getSize();
 
         this.total = total;
         this.dtoList = dtoList;

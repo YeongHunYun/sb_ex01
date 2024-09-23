@@ -17,7 +17,7 @@ public class BoardImage implements Comparable<BoardImage> {
     @Id
     private String uuid;
     private String fileName;
-    private String ord;
+    private int ord;
 
     @ManyToOne
     private Board board;
